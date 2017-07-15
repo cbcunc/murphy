@@ -11,39 +11,44 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-#
-# attributehandler.py is a helper file for parsing the attribute field of GFF and GTF files
+
+# attributehandler.py is a helper file for parsing the attribute field of
+# GFF and GTF files.
 #
 # Routines return a dictionary containing the attribute fields and
-# their values
+# their values.
 #
 # version history
 # 2014-10-20  S. Stiegelmeyer  convert keys to lowercase
 # 2015-07-23  S. Stiegelmeyer  add support for gtf files
 # 2016-10-19  S. Stiegelmeyer  rename parseAttributes to parseAttributesGFF
+# 2017-07-15  C. Calloway      flake8
+
 
 def parseAttributesGFF(attrib):
     alist = attrib.split(';')
-    septuple=[]
+    septuple = []
     for i in range(len(alist)):
         item = alist[i].strip().split('=')
-        item[0]=item[0].lower()
+        item[0] = item[0].lower()
         if len(item) == 2:
             septuple.append(tuple(item))
     adict = dict(septuple)
     return adict
 
+
 def parseAttributesGTF(attrib):
     alist = attrib.split(';')
-    septuple=[]
+    septuple = []
     for i in range(len(alist)):
         item = alist[i].strip().split(' "')
         if len(item) == 2:
-            item[0]=item[0].lower()
-            item[1]=item[1].strip('"')
+            item[0] = item[0].lower()
+            item[1] = item[1].strip('"')
             septuple.append(tuple(item))
     adict = dict(septuple)
     return adict
+
 
 def attributesfromdictGTF(adict):
     # create an attribute field from adict
