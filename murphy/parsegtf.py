@@ -192,8 +192,10 @@ def makeGeneTreeFromExons(gtf, pchrom):
         posstop = int(fields[4])
         strand = fields[6]
         attributes = attributehandler.parseAttributesGTF(fields[8])
-        genenm = attributes['gene_id']
-        transcript = attributes['transcript_id']
+        genenm = attributes['gene_name'] if 'gene_name' in attributes \
+                    else attributes['gene_id']
+        transcript = attributes['transcript_name'] if 'transcirpt_name' in attributes \
+                    else attributes['gene_name']
         genes.setdefault(transcript, dict()).setdefault('exon', list()) \
              .append((posstrt, posstop))
         genes.setdefault(transcript, dict()).setdefault('chrom', chrom)
