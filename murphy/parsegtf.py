@@ -20,8 +20,8 @@
 import numpy
 import matplotlib.pyplot
 
-import attributehandler
-import Tree.intervalTree as intervalTree
+from murphy import attributehandler
+from murphy.Tree import intervalTree
 
 matplotlib.style.use('ggplot')
 
