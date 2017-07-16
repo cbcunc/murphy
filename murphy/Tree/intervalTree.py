@@ -11,25 +11,26 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
+'''
+intevalTree.py is an adaptation of the interval tree algorithm based on
+red-black trees from Introduction to Algorithms by Cormen, Leiserson, Rivest
+and Stein (2001) 2nd Edition, The MIT Press
 
-# intevalTree.py is an adaptation of the interval tree algorithm based on r
-# ed-black trees from Introduction to Algorithms by Cormen, Leiserson, Rivest
-# and Stein (2001) 2nd Edition, The MIT Press
+This makes a nice self-balancing tree.  The alrogithm may be more efficient
+if items are randomly selected for insertion, instead of in sort order.
 
-# This makes a nice self-balancing tree.  If items to be inserted are already
-# sorted, the alrogithm may be more efficient if items are ranomly selected for
-# insertion.
-
-# I've modified the CLRS algorithm to report all overlapping nodes instead of
-# only the first node.  This involved adding a min value instead of only a max
-# value in order to speed up the search by checking if the subtree min,max
-# overlaps with the search interval.  The search routine is also recursive.
+I've modified the CLRS algorithm to report all overlapping nodes instead of
+only the first node.  This involved adding a min value instead of only a max
+value in order to speed up the search by checking if the subtree min,max
+overlaps with the search interval.  The search routine is also recursive.
+'''
 #
 # 2010-05-31 S. Stiegelmeyer Created
 # 2014-08-21 S. stiegelmeyer Added closestNode method to find closest interval
 #                            to non-overlapping interval
 # 2014-09-29 S. Stiegelmeyer Fixed bugs in closestNode method and removed
 #                            rightChild method
+# 2017-07-15 S. Stiegelmeyer Add more document strings
 
 RED = 0
 BLACK = 1
@@ -69,7 +70,8 @@ def traverseInOrder(node):
 
 
 def searchTSS(node, pt):
-    """work in progress
+    """Routine for closest transcription start site (TSS).
+    Don't use. Not finished.
     """
     found = False
     while not found:
@@ -109,6 +111,13 @@ def searchTSS(node, pt):
 
 
 def deleteTree(node):
+    '''
+    Given a root node, recursively delete the interval tree.
+    Input:
+        node - initially the root node
+    Output:
+        none
+    '''
     if node.eiTree is not None:
         deleteTree(node.eiTree)
     if node.left is not None:
@@ -330,7 +339,7 @@ class Tree:
         return root
 
     def maximum(self):
-        """ Calculate the maximum(self.y, self.left.max, self.right.max)
+        """ Calculate the maximum of (self.y, self.left.max, self.right.max)
         """
         t1 = self.y
         t2 = self.left.max if self.left is not None else 0
@@ -342,7 +351,7 @@ class Tree:
         self.max = t1
 
     def minimum(self):
-        """ Calculate the minimum(self.x, self.left.min, self.right.min)
+        """ Calculate the minimum of (self.x, self.left.min, self.right.min)
         """
         t1 = self.x
         t2 = self.left.min if self.left is not None else self.x
@@ -426,18 +435,33 @@ class Tree:
         return root
 
     def maximumNode(self):
+        '''
+        Find the node with the maximum value
+        Input:
+            self - tree node
+        Output:
+            maximum node
+        '''
         x = self
         while x.right is not None:
             x = x.right
         return x
 
     def minimumNode(self):
+        '''
+        Find the node with the minimum value
+        Input:
+            self - tree node
+        Output:
+            minimum node
+        '''
         x = self
         while x.left is not None:
             x = x.left
         return x
 
     def successorNode(self):
+        '''Find the successor node'''
         x = self
         if x.right is not None:
             return x.right.minimumNode()
@@ -449,6 +473,7 @@ class Tree:
 
     def deleteNode(self, root):
         """ Delete node from tree given the root node
+        ***This does not work***
             Input:
                 self: node to delete
                 root: root of tree
@@ -514,6 +539,7 @@ class Tree:
         return root
 
     def deleteFixup(self, root, sentinel):
+        '''Routine to ensure the tree is balanced after removing a node'''
         if sentinel:
             x = None
             parent = self
@@ -583,6 +609,7 @@ class Tree:
         return root
 
     def prevNode(self):
+        '''Previous node in tree'''
         node = None
         if self.left is not None:
             node = self.left.maximumNode()
@@ -595,6 +622,7 @@ class Tree:
         return node
 
     def nextNode(self):
+        '''Next node in tree'''
         node = None
         if self.right is not None:
             node = self.right.minimumNode()

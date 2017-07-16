@@ -11,34 +11,36 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
+'''
+arghandler.py is a python utility script that will support command line
+parameter handling. Given a list of sys.argv arguments a dictionary will
+be returned where the key is the agument name and the value will be
+argument value.  '-' are removed from the key name in the dictionary.
 
-# arghandler.py is a python utility script that will support command line
-# parameter handling. Given a list of sys.argv arguments a dictionary will
-# be returned where the key is the agument name and the value will be
-# argument value.  '-' are removed from the key name in the dictionary.
-#
-# For arguments that do not have a value, None is returned as the argument
-# value in the dictionary.
-#
-# Basic error handling is implemented to check for duplicate command
-# areguments and values missing a command argument, i.e,
-#
-#     -i tmp.txt tmp2.txt -o out.txt.
-#
-# tmp2.txt would be flagged as an error.
-#
-# If an error is detected a boolean is returned to the calling program so
-# that it can handle the error.
+For arguments that do not have a value, None is returned as the argument
+value in the dictionary.
 
+Basic error handling is implemented to check for duplicate command
+areguments and values missing a command argument, i.e,
+
+    -i tmp.txt tmp2.txt -o out.txt.
+
+tmp2.txt would be flagged as an error.
+
+If an error is detected a boolean is returned to the calling program so
+that it can handle the error.
+'''
 # Version history:
 # 2016-11-16    S. Stiegelmeyer Initial version
 # 2017-01-05    S. Stiegelmeyer Added some comments
-# 2017-07-15    C. Calloway Flake8
+# 2017-07-15    C. Calloway     Flake8
+# 2017-07-15    S. Stiegelmeyer add document strings
 
 import sys
 
 
 def argHandler(args):
+    '''argparse is better. But a simple way to handle command arguments'''
     i = 1  # args[0] is the script name
     argdict = {}
     mykey = None
