@@ -11,6 +11,7 @@ def test_addtree():
     tree = parsegtf.makeGeneTreeFromExons('murphy/tests/test.gtf', None)
     assert_equal(len(tree.keys()), 2, msg="Not enough chromosomes in tree")
 
+
 def test_searchtree():
     from murphy import parsegtf
     from murphy.Tree import intervalTree
@@ -19,6 +20,3 @@ def test_searchtree():
 
     nodes = intervalTree.searchTree(tree['chr6'], 152415520, 152415521)
     assert_equal(nodes[0].name2, 'ESR1', msg="Gene names do not match")
-
-
-
