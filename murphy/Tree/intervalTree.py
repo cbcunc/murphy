@@ -31,6 +31,7 @@ overlaps with the search interval.  The search routine is also recursive.
 # 2014-09-29 S. Stiegelmeyer Fixed bugs in closestNode method and removed
 #                            rightChild method
 # 2017-07-15 S. Stiegelmeyer Add more document strings
+import sys
 
 RED = 0
 BLACK = 1
@@ -64,7 +65,7 @@ def traverseInOrder(node):
         traverseInOrder(node.eiTree)
     if node.left is not None:
         traverseInOrder(node.left)
-    print(node)
+    sys.stdout.write(node)
     if node.right is not None:
         traverseInOrder(node.right)
 
