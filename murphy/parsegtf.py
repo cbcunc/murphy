@@ -31,11 +31,13 @@ from murphy.Tree import intervalTree
 
 matplotlib.style.use('ggplot')
 
+
 def openru(f):
     if six.PY2:
         return open(f, "rU")
     else:
         return open(f, newline=None)
+
 
 def getKeySort(item):
     '''
