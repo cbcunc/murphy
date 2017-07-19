@@ -18,11 +18,6 @@ def test_import_parsegtf():
     assert_true(parsegtf, msg="Failed to import parsegtf")
 
 
-def test_import_arghandler():
-    from murphy import arghandler
-    assert_true(arghandler, msg="Failed to import arghandler")
-
-
 def test_import_intervaltree():
     from murphy.Tree import intervalTree
     assert_true(intervalTree, msg="Failed to import intervalTree")
