@@ -11,14 +11,6 @@ def test_murphy_docstring():
                 msg="Muphy docstring is blank")
 
 
-def test_arghandler_docstring():
-    from murphy import arghandler
-    assert_is_not_none(arghandler.__doc__,
-                       msg="Arghandler docstring is None")
-    assert_true(arghandler.__doc__.strip(),
-                msg="Arghandler docstring is blank")
-
-
 def test_attributehandler_docstring():
     from murphy import attributehandler
     assert_is_not_none(attributehandler.__doc__,
