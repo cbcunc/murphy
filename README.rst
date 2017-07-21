@@ -3,6 +3,9 @@ Murphy
 ======
 Generic tools to identify overlapping genomic regions
 -----------------------------------------------------
+.. image:: https://travis-ci.org/drsuuzzz/murphy.svg?branch=master
+    :target: https://travis-ci.org/drsuuzzz/murphy
+
 Murphy provides a set of tools based on an implementation of the interval
 tree algorithm based on red-black trees from Introduction to Algorithms by
 Cormen, Leiserson, Rivest and Stein (2001) 2nd Edition, The MIT Press
