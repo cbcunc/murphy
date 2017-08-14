@@ -20,7 +20,9 @@ place a gtf file or bed file into the interval overlap tree.
 # 2017-01-05	S. Stiegelmeyer	Add some comments
 # 2017-07-15    C. Calloway     Flake8
 # 2017-07-15    S. Stiegelmeyer Add document strings
+# 2017-07-19    C. Calloway     Sixify
 
+import six
 import numpy
 import matplotlib.pyplot
 
@@ -28,6 +30,13 @@ from murphy import attributehandler
 from murphy.Tree import intervalTree
 
 matplotlib.style.use('ggplot')
+
+
+def openru(f):
+    if six.PY2:
+        return open(f, "rU")
+    else:
+        return open(f, newline=None)
 
 
 def getKeySort(item):
@@ -78,7 +87,7 @@ def makeExonIntronTree(gtf, pchrom):
         dictionary of interval trees where the key is the chromosome and the
         value is the root of the interval tree
     '''
-    gfh = open(gtf, "rU")
+    gfh = openru(gtf)
     genes = {}
     for line in gfh:
         fields = line.strip().split('\t')
@@ -160,7 +169,7 @@ def makeExonIntronTreePos(gtf, pchrom):
             first - coordinate of 5' end of first exon or intron
             last - coordinate of 3' end of last exon or intron
     '''
-    gfh = open(gtf, "rU")
+    gfh = openru(gtf)
     genes = {}
     for line in gfh:
         fields = line.strip().split('\t')
@@ -257,7 +266,7 @@ def makeGeneTreeFromExons(gtf, pchrom):
         dictionary of interval trees where the key is the chromosome and the
         value is the root of the interval tree
     '''
-    gfh = open(gtf, "rU")
+    gfh = openru(gtf)
     genes = {}
     for line in gfh:
         fields = line.strip().split('\t')
@@ -318,7 +327,7 @@ def getGeneLengthDistribution(gtf, limit=None):
     Output:
         png file of the histogram named glen.png in the current directory
     '''
-    gfh = open(gtf, "rU")
+    gfh = openru(gtf)
     genes = {}
     for line in gfh:
         fields = line.strip().split('\t')
@@ -364,7 +373,7 @@ def makeTreeFromBed(bed):
         a dictionary is returned where the keys are chromosomes and the values
         are the roots of the interval overlap trees by chromosome.
     '''
-    bfh = open(bed, 'rU')
+    bfh = openru(bed)
     roots = {}
     for line in bfh:
         fields = line.strip().split('\t')

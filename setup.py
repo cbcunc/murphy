@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="murphy",
-    version="0.1",
+    version="0.1.1",
     packages=find_packages(),
     package_data={
         "": ["*.txt", "*.rst", ],
@@ -43,7 +43,10 @@ overlaps with the search interval.  The search routine is also recursive.
                  "Topic :: Scientific/Engineering :: Bio-Informatics",
                  ],
     zip_safe=False,
-    install_requires=["matplotlib", ],
+    install_requires=["six",
+                      "numpy",
+                      "matplotlib",
+                      ],
     test_suite="nose.collector",
     tests_require=["nose", ]
 )
